@@ -11,7 +11,7 @@
  * 524288 | 13,747 | 13,170 | 0,577216619
  */
 
-package TP1.Homework;
+package tp1.Homework;
 public class Table {
     public static void main(String[] args) {
         System.out.printf("%6s | %6s | %6s | %11s\n", "n", "Hn", "log n", "Hn - log n");

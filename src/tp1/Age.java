@@ -1,4 +1,4 @@
-package TP1;
+package tp1;
 
 import java.util.Scanner;
 import java.time.Year;

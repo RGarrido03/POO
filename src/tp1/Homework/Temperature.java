@@ -6,7 +6,7 @@
  * print("THE END")
  */
 
-package TP1.Homework;
+package tp1.Homework;
 import java.util.Scanner;
 
 public class Temperature {

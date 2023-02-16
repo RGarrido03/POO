@@ -8,7 +8,7 @@
  * and prints out the new balance.
  */
 
-package TP1.Homework;
+package tp1.Homework;
 import java.util.Scanner;
 
 public class BankInterest
