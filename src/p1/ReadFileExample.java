@@ -6,11 +6,11 @@ import java.nio.file.Paths;
 
 public class ReadFileExample {
     public static void main(String[] args) {
-        Path fich = Paths.get("src/p1/major.txt");
+        Path fich = Paths.get("resources/major.txt");
         try {
             Files.readAllLines(fich).stream().forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Certifique-se que o ficheiro 'major.txt' está na pasta 'src/p1'.");
+            System.out.println("Certifique-se que o ficheiro 'major.txt' está na pasta 'resources'.");
         }
     }
 }
