@@ -6,7 +6,7 @@
  * print("THE END")
  */
 
-package Homework; // Ignore this, folder structure related
+package TP1.Homework;
 import java.util.Scanner;
 
 public class Temperature {

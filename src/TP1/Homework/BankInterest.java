@@ -8,7 +8,7 @@
  * and prints out the new balance.
  */
 
-package Homework; // Ignore this, folder structure related
+package TP1.Homework;
 import java.util.Scanner;
 
 public class BankInterest
