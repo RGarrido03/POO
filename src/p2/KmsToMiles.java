@@ -1,4 +1,4 @@
-package p2_lastyear;
+package p2;
 import java.util.Scanner;
 
 public class KmsToMiles {
