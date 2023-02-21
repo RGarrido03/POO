@@ -1,20 +1,15 @@
 package p2;
 import java.util.Scanner;
+import utils.UserInput;
 
 public class EnergyToHeatWater {
     public static void main(String[] args) {
         double weight, initialTemp, finalTemp, energy;
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Input the weight of the water: ");
-        weight = Double.parseDouble(sc.nextLine());
-
-        System.out.print("Input the initial temperature: ");
-        initialTemp = Double.parseDouble(sc.nextLine());
-        
-        System.out.print("Input the final temperature: ");
-        finalTemp = Double.parseDouble(sc.nextLine());
-
+        weight = UserInput.inputDoublePositive(sc, "Input the weight of the water:");
+        initialTemp = UserInput.inputDoublePositive(sc, "Input the initial temperature:");
+        finalTemp = UserInput.inputDoublePositive(sc, "Input the final temperature:");
         sc.close();
 
         energy = weight * (finalTemp - initialTemp) * 4184;

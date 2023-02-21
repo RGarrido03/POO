@@ -1,18 +1,13 @@
 package p2;
 import java.util.Scanner;
+import utils.UserInput;
 
 public class Countdown {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N;
 
-        System.out.print("Input N: ");
-        do {
-            N = Integer.parseInt(sc.nextLine());
-            if (N <= 0) {
-                System.out.print("The number you provided isn't positive. Input a new one: ");
-            }
-        } while (N <= 0);
+        N = UserInput.inputIntPositive(sc, "Input N:");
         sc.close();
 
         for (int i = N; i >= 0; i--) {
