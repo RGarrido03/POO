@@ -100,6 +100,7 @@ public class UserInput {
         return inputDoubleRange(sc, message, Double.POSITIVE_INFINITY * -1, max, true, exclusive_right);
     }
 
+    
     //
     // Integers
     //
@@ -188,5 +189,16 @@ public class UserInput {
 
     public static double inputIntRangeMax(Scanner sc, String message, double max, boolean exclusive_right) {
         return inputDoubleRange(sc, message, Integer.MIN_VALUE, max, true, exclusive_right);
+    }
+
+
+    //
+    // Strings
+    //
+
+    public static String inputString(Scanner sc, String message) {
+        message = fixString(message);
+        System.out.print(message);
+        return sc.nextLine();
     }
 }
