@@ -1,5 +1,5 @@
 package utils;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserInput {
     private static String fixString(String message) {
@@ -15,9 +15,23 @@ public class UserInput {
     //
 
     public static double inputDouble(Scanner sc, String message) {
+        double num;
+        boolean ok = false;
+
         message = fixString(message);
         System.out.print(message);
-        return Double.parseDouble(sc.nextLine());
+
+        do {
+            try {
+                num = Double.parseDouble(sc.nextLine());
+                ok = true;
+            } catch (Exception e) {
+                num = 0; // Dummy
+                System.out.print("You didn't input a number. Try again: ");
+            }
+        } while (!ok);
+
+        return num;
     }
 
     public static double inputDoublePositive(Scanner sc, String message) {
@@ -26,7 +40,14 @@ public class UserInput {
         message = fixString(message);
         System.out.print(message);
         do {
-            num = Double.parseDouble(sc.nextLine());
+            try {
+                num = Double.parseDouble(sc.nextLine());
+            } catch (Exception e) {
+                num = 0; // Dummy
+                System.out.print("You didn't input a number. Try again: ");
+                continue;
+            }
+            
             if (!(num > 0)) {
                 System.out.print("The value you inputted isn't positive. Input a new one: ");
             }
@@ -42,7 +63,14 @@ public class UserInput {
         message = fixString(message);
         System.out.print(message);
         do {
-            num = Double.parseDouble(sc.nextLine());
+            try {
+                num = Double.parseDouble(sc.nextLine());
+            } catch (Exception e) {
+                num = 0; // Dummy
+                System.out.print("You didn't input a number. Try again: ");
+                continue;
+            }
+
             if (exclusive_left) {
                 if (exclusive_right) {
                     if (num <= min || num >= max) {
@@ -72,7 +100,7 @@ public class UserInput {
                 if (exclusive_right) {
                     if (num < min || num >= max) {
                         if (max == Double.POSITIVE_INFINITY) {
-                            System.out.printf("The value you inputted isn't in range [%f, Infinity[. Input a new one: ", max);
+                            System.out.printf("The value you inputted isn't in range [%f, Infinity[. Input a new one: ", min);
                         } else {
                             System.out.printf("The value you inputted isn't in range [%f, %f[. Input a new one: ", min, max);
                         }
@@ -106,9 +134,23 @@ public class UserInput {
     //
 
     public static int inputInt(Scanner sc, String message) {
+        int num;
+        boolean ok = false;
+
         message = fixString(message);
         System.out.print(message);
-        return Integer.parseInt(sc.nextLine());
+
+        do {
+            try {
+                num = Integer.parseInt(sc.nextLine());
+                ok = true;
+            } catch (Exception e) {
+                num = 0; // Dummy
+                System.out.print("You didn't input a number. Try again: ");
+            }
+        } while (!ok);
+
+        return num;
     }
 
     public static int inputIntPositive(Scanner sc, String message) {
@@ -117,7 +159,14 @@ public class UserInput {
         message = fixString(message);
         System.out.print(message);
         do {
-            num = Integer.parseInt(sc.nextLine());
+            try {
+                num = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                num = 0; // Dummy
+                System.out.print("You didn't input a number. Try again: ");
+                continue;
+            }
+
             if (!(num > 0)) {
                 System.out.print("The value you inputted isn't positive. Input a new one: ");
             }
@@ -133,7 +182,14 @@ public class UserInput {
         message = fixString(message);
         System.out.print(message);
         do {
-            num = Integer.parseInt(sc.nextLine());
+            try {
+                num = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                num = 0; // Dummy
+                System.out.print("You didn't input a number. Try again: ");
+                continue;
+            }
+
             if (exclusive_left) {
                 if (exclusive_right) {
                     if (num <= min || num >= max) {
@@ -163,7 +219,7 @@ public class UserInput {
                 if (exclusive_right) {
                     if (num < min || num >= max) {
                         if (max == Integer.MAX_VALUE) {
-                            System.out.printf("The value you inputted isn't in range [%f, Infinity[. Input a new one: ", max);
+                            System.out.printf("The value you inputted isn't in range [%f, Infinity[. Input a new one: ", min);
                         } else {
                             System.out.printf("The value you inputted isn't in range [%f, %f[. Input a new one: ", min, max);
                         }
