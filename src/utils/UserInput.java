@@ -1,5 +1,5 @@
 package utils;
-import java.util.*;
+import java.util.Scanner;
 
 public class UserInput {
     private static String fixString(String message) {
