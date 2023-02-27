@@ -237,11 +237,11 @@ public class UserInput {
                 if (exclusive_right) {
                     if (num <= min || num >= max) {
                         if (max == Integer.MAX_VALUE) {
-                            System.out.printf("The value you inputted isn't in range ]%f, Infinity[. Input a new one: ", min);
+                            System.out.printf("The value you inputted isn't in range ]%d, Infinity[. Input a new one: ", min);
                         } else if (min == Integer.MIN_VALUE) {
-                            System.out.printf("The value you inputted isn't in range ]Infinity, %f[. Input a new one: ", max);
+                            System.out.printf("The value you inputted isn't in range ]Infinity, %d[. Input a new one: ", max);
                         } else {
-                            System.out.printf("The value you inputted isn't in range ]%f, %f[. Input a new one: ", min, max);
+                            System.out.printf("The value you inputted isn't in range ]%d, %d[. Input a new one: ", min, max);
                         }
                     } else {
                         ok = true;
@@ -250,9 +250,9 @@ public class UserInput {
                 } else {
                     if (num <= min || num > max) {
                         if (min == Integer.MIN_VALUE) {
-                            System.out.printf("The value you inputted isn't in range ]Infinity, %f]. Input a new one: ", max);
+                            System.out.printf("The value you inputted isn't in range ]Infinity, %d]. Input a new one: ", max);
                         } else {
-                            System.out.printf("The value you inputted isn't in range ]%f, %f]. Input a new one: ", min, max);
+                            System.out.printf("The value you inputted isn't in range ]%d, %d]. Input a new one: ", min, max);
                         }
                     } else {
                         ok = true;
@@ -262,16 +262,16 @@ public class UserInput {
                 if (exclusive_right) {
                     if (num < min || num >= max) {
                         if (max == Integer.MAX_VALUE) {
-                            System.out.printf("The value you inputted isn't in range [%f, Infinity[. Input a new one: ", min);
+                            System.out.printf("The value you inputted isn't in range [%d, Infinity[. Input a new one: ", min);
                         } else {
-                            System.out.printf("The value you inputted isn't in range [%f, %f[. Input a new one: ", min, max);
+                            System.out.printf("The value you inputted isn't in range [%d, %d[. Input a new one: ", min, max);
                         }
                     } else {
                         ok = true;
                     }
                 } else {
                     if (num < min || num > max) {
-                        System.out.printf("The value you inputted isn't in range [%f, %f]. Input a new one: ", min, max);
+                        System.out.printf("The value you inputted isn't in range [%d, %d]. Input a new one: ", min, max);
                     } else {
                         ok = true;
                     }
