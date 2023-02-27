@@ -18,8 +18,10 @@ public class UserInput {
         double num;
         boolean ok = false;
 
-        message = fixString(message);
-        System.out.print(message);
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
 
         do {
             try {
@@ -37,8 +39,11 @@ public class UserInput {
     public static double inputDoublePositive(Scanner sc, String message) {
         double num;
 
-        message = fixString(message);
-        System.out.print(message);
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
+
         do {
             try {
                 num = Double.parseDouble(sc.nextLine());
@@ -56,12 +61,42 @@ public class UserInput {
         return num;
     }
 
+    public static double inputDoublePositiveMultiple(Scanner sc, String message, double multiple) {
+        double num;
+
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
+
+        do {
+            try {
+                num = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                num = 0; // Dummy
+                System.out.print("You didn't input a number. Try again: ");
+                continue;
+            }
+
+            if (!(num > 0)) {
+                System.out.print("The value you inputted isn't positive. Input a new one: ");
+            } else if (!(num % multiple == 0)) {
+                System.out.print("The value you inputted isn't a multiple of 1000. Input a new one: ");
+            }
+        } while (!(num > 0 && num % multiple == 0));
+
+        return num;
+    };
+
     public static double inputDoubleRange(Scanner sc, String message, double min, double max, boolean exclusive_left, boolean exclusive_right) {
         double num;
         boolean ok = false;
 
-        message = fixString(message);
-        System.out.print(message);
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
+
         do {
             try {
                 num = Double.parseDouble(sc.nextLine());
@@ -137,8 +172,10 @@ public class UserInput {
         int num;
         boolean ok = false;
 
-        message = fixString(message);
-        System.out.print(message);
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
 
         do {
             try {
@@ -156,8 +193,11 @@ public class UserInput {
     public static int inputIntPositive(Scanner sc, String message) {
         int num;
 
-        message = fixString(message);
-        System.out.print(message);
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
+
         do {
             try {
                 num = Integer.parseInt(sc.nextLine());
@@ -179,8 +219,11 @@ public class UserInput {
         int num;
         boolean ok = false;
 
-        message = fixString(message);
-        System.out.print(message);
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
+        
         do {
             try {
                 num = Integer.parseInt(sc.nextLine());
@@ -239,22 +282,23 @@ public class UserInput {
         return num;
     }
 
-    public static double inputIntRangeMin(Scanner sc, String message, double min, boolean exclusive_left) {
-        return inputDoubleRange(sc, message, min, Integer.MAX_VALUE, exclusive_left, true);
+    public static int inputIntRangeMin(Scanner sc, String message, int min, boolean exclusive_left) {
+        return inputIntRange(sc, message, min, Integer.MAX_VALUE, exclusive_left, true);
     }
 
-    public static double inputIntRangeMax(Scanner sc, String message, double max, boolean exclusive_right) {
-        return inputDoubleRange(sc, message, Integer.MIN_VALUE, max, true, exclusive_right);
+    public static int inputIntRangeMax(Scanner sc, String message, int max, boolean exclusive_right) {
+        return inputIntRange(sc, message, Integer.MIN_VALUE, max, true, exclusive_right);
     }
-
 
     //
     // Strings
     //
 
     public static String inputString(Scanner sc, String message) {
-        message = fixString(message);
-        System.out.print(message);
+        if (message != null) {
+            message = fixString(message);
+            System.out.print(message);
+        }
         return sc.nextLine();
     }
 }
