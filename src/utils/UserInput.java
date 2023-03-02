@@ -1,4 +1,5 @@
 package utils;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class UserInput {
@@ -300,5 +301,17 @@ public class UserInput {
             System.out.print(message);
         }
         return sc.nextLine();
+    }
+
+    //
+    // Date
+    //
+
+    public static int[] inputDate_mmyyyy(Scanner sc) {
+        int[] date = new int[2];
+        date[0] = inputIntRange(sc, "Input the month:", 1, 12, false, false);
+        date[1] = inputInt(sc, "Input the year:");
+        
+        return date;
     }
 }
