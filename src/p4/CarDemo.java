@@ -32,9 +32,12 @@ public class CarDemo {
     static Scanner sc = new Scanner(System.in);
 
     static Boolean verifyRegister(String input) {
-        // Incomplete and non-working!
-        System.out.println(input.matches("[a-zA-Z] \\d{4} \\d+"));
-        return input.matches("[a-zA-Z] \\d{4} \\d+");
+        /*
+         * \\p{L} verifies all Unicode letter characters.
+         * \\p{Space} represents the space character, aka " ".
+         * \\d verifies numbers. This is also included in the car model's part, because of cars like "Peugeot 3008".
+         */
+        return input.matches("^[\\p{L}]+([\\p{Space}][\\p{L}\\d]+)*[\\p{Space}]\\d{4}[\\p{Space}]\\d+$");
     }
 
     static int registerCars(ArrayList<Car> cars) {
@@ -72,30 +75,45 @@ public class CarDemo {
     }
 
     static void registerTrips(ArrayList<Car> cars, int numCars) {
-        // TODO: pede dados das viagens ao utilizador e atualiza informação do carro
-        // registo de viagens termina quando o utilizador inserir uma linha vazia 
+        String input;
         System.out.print("Registe uma viagem no formato \"carro:distância\": ");
+
+        do {
+            input = UserInput.inputString(sc, null);
+            
+            if (input == "") {
+                break;
+            } else if (input.matches("\\d+:\\d+")) {
+                String[] temp = input.split(":");
+                int idx = Integer.parseInt(temp[0]);
+                if (idx >= 0 && idx < numCars) {
+                    cars.get(idx)
+                        .drive(Integer.parseInt(temp[1]));
+                } else {
+                    System.out.println("Índice incorreto.");
+                }
+            } else {
+                System.out.println("Dados mal formatados. Tente novamente.");
+            }
+        } while (input != "");
     }
 
 
     static void listCars(ArrayList<Car> cars) {
         System.out.println("\nCarros registados: ");
-        // TODO: lista todos os carros registados
-        // Exemplo de resultado
-        // Carros registados: 
-        // Toyota Camry, 2010, kms: 234346
-        // Renault Megane Sport Tourer, 2015, kms: 32536
-        
+        for (int i = 0; i < cars.size(); i++) {
+            Car car = cars.get(i);
+            System.out.printf("%s %s, %d, kms: %d\n", car.getMake(), car.getModel(), car.getYear(), car.getKms());
+        }
         System.out.println("\n");
     }
 
     public static void main(String[] args) {
 
         ArrayList<Car> cars = new ArrayList<>();
-
         int numCars = registerCars(cars);
 
-        if (numCars>0) {
+        if (numCars > 0) {
             listCars(cars);
             registerTrips(cars, numCars);
             listCars(cars);
