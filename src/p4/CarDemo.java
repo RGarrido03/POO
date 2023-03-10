@@ -31,34 +31,36 @@ public class CarDemo {
     static Scanner sc = new Scanner(System.in);
 
     static Boolean verifyRegister(String input) {
-        if (input == "^[]")
-            return true;
-        else
-            return false;
+        return true;
     }
 
     static int registerCars(Car[] cars) {
-        String input;
-        String[] temp;
+        String input, make;
+        String[] tmp;
+        int year, kms;
         int i = 0;
 
         System.out.print("Insira dados do carro (marca modelo ano quilómetros): ");
         do {
             input = UserInput.inputString(sc, null);
-
-            temp = input.split(" ", 2);
-            String make = temp[0];
-
-            temp = temp[1].split(" ");
-
-            StringBuilder model = new StringBuilder();
-            for (int j = 0; j < temp.length - 2; j++) {
-                model.add() // NOT WORKING, it's incomplete.
+            
+            if (input == "") {
+                break;
             }
-            int year = Integer.parseInt(temp[-2]);
-            int kms = Integer.parseInt(temp[-1]);
-
-            if (verifyRegister(input)) {
+            else if (verifyRegister(input)) {
+                tmp = input.split(" ");
+    
+                make = tmp[0];
+                year = Integer.parseInt(tmp[tmp.length - 2]);
+                kms = Integer.parseInt(tmp[tmp.length - 1]);
+    
+                StringBuilder model = new StringBuilder();
+                for (int j = 1; j < tmp.length - 3; j++) {
+                    model.append(tmp[j] + " ");
+                }
+                model.append(tmp[tmp.length - 3]);
+    
+                System.out.println(make + model.toString() + year + kms);
                 cars[i] = new Car(make, model.toString(), year, kms);
             } else {
                 System.out.println("Dados mal formatados. Tente novamente.");
@@ -67,7 +69,6 @@ public class CarDemo {
             i++;
         } while (input != "");
         
-        String a = sc.next();
         return cars.length;
     }
 
