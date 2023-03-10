@@ -1,4 +1,5 @@
 package p4;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import utils.UserInput;
@@ -31,14 +32,15 @@ public class CarDemo {
     static Scanner sc = new Scanner(System.in);
 
     static Boolean verifyRegister(String input) {
-        return true;
+        // Incomplete and non-working!
+        System.out.println(input.matches("[a-zA-Z] \\d{4} \\d+"));
+        return input.matches("[a-zA-Z] \\d{4} \\d+");
     }
 
-    static int registerCars(Car[] cars) {
+    static int registerCars(ArrayList<Car> cars) {
         String input, make;
         String[] tmp;
         int year, kms;
-        int i = 0;
 
         System.out.print("Insira dados do carro (marca modelo ano quilómetros): ");
         do {
@@ -59,27 +61,24 @@ public class CarDemo {
                     model.append(tmp[j] + " ");
                 }
                 model.append(tmp[tmp.length - 3]);
-    
-                System.out.println(make + model.toString() + year + kms);
-                cars[i] = new Car(make, model.toString(), year, kms);
+                
+                cars.add(new Car(make, model.toString(), year, kms));
             } else {
                 System.out.println("Dados mal formatados. Tente novamente.");
             }
-
-            i++;
         } while (input != "");
         
-        return cars.length;
+        return cars.size();
     }
 
-    static void registerTrips(Car[] cars, int numCars) {
+    static void registerTrips(ArrayList<Car> cars, int numCars) {
         // TODO: pede dados das viagens ao utilizador e atualiza informação do carro
         // registo de viagens termina quando o utilizador inserir uma linha vazia 
         System.out.print("Registe uma viagem no formato \"carro:distância\": ");
     }
 
 
-    static void listCars(Car[] cars) {
+    static void listCars(ArrayList<Car> cars) {
         System.out.println("\nCarros registados: ");
         // TODO: lista todos os carros registados
         // Exemplo de resultado
@@ -92,7 +91,7 @@ public class CarDemo {
 
     public static void main(String[] args) {
 
-        Car[] cars = new Car[10];
+        ArrayList<Car> cars = new ArrayList<>();
 
         int numCars = registerCars(cars);
 
