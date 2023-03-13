@@ -35,10 +35,53 @@ public class Calendar {
     public static int getNumberOfDaysInMonth(int month, int year) {
         int[] days_array = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         
-        if (month == 2 && year % 4 == 0) {
+        if (month == 2 && isLeapYear(year)) {
             return days_array[month - 1] + 1;
         } else {
             return days_array[month - 1];
         }
     }
+
+    public static boolean isLeapYear(int year) {
+        return year % 4 == 0;
+    }
+
+    public static boolean isValidMonth(int month) {
+        return month >= 1 && month <= 12;
+    }
+
+    public static boolean isValidDate(int day, int month, int year) {
+        if (!isValidMonth(month)) {
+            return false;
+        } else if (day < 1 || day > getNumberOfDaysInMonth(month, year)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void incrementDate(int day, int month, int year) {
+        if (month == 12 && day == 31) {
+            year++;
+            month = 1;
+            day = 1;
+        } else if (day == getNumberOfDaysInMonth(month, year)) {
+            month++;
+            day = 1;
+        } else {
+            day++;
+        }
+    };
+
+    public static void decrementDate(int day, int month, int year) {
+        if (month == 1 && day == 1) {
+            year--;
+            month = 12;
+            day = 31;
+        } else if (day == 1) {
+            month--;
+            day = getNumberOfDaysInMonth(month, year);
+        } else {
+            day--;
+        }
+    };
 }
