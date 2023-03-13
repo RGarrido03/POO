@@ -64,10 +64,12 @@ public class DateYMD {
     };
 
     public void incrementDate() {
-        Calendar.incrementDate(this.day, this.month, this.year);
-    };
+        int[] tempDate = Calendar.incrementDate(this.day, this.month, this.year);
+        this.setDate(tempDate[0], tempDate[1], tempDate[2]);
+    }
 
     public void decrementDate() {
-        Calendar.decrementDate(this.day, this.month, this.year);
-    };
+        int[] tempDate = Calendar.decrementDate(this.day, this.month, this.year);
+        this.setDate(tempDate[0], tempDate[1], tempDate[2]);
+    }
 }

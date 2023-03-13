@@ -59,29 +59,33 @@ public class Calendar {
         return true;
     }
 
-    public static void incrementDate(int day, int month, int year) {
+    public static int[] incrementDate(int day, int month, int year) {
+        int[] date = {day, month, year};
         if (month == 12 && day == 31) {
-            year++;
-            month = 1;
-            day = 1;
+            date[2]++;
+            date[1] = 1;
+            date[0] = 1;
         } else if (day == getNumberOfDaysInMonth(month, year)) {
-            month++;
-            day = 1;
+            date[1]++;
+            date[0] = 1;
         } else {
-            day++;
+            date[0]++;
         }
+        return date;
     };
 
-    public static void decrementDate(int day, int month, int year) {
+    public static int[] decrementDate(int day, int month, int year) {
+        int[] date = {day, month, year};
         if (month == 1 && day == 1) {
-            year--;
-            month = 12;
-            day = 31;
+            date[2]--;
+            date[1] = 12;
+            date[0] = 31;
         } else if (day == 1) {
-            month--;
-            day = getNumberOfDaysInMonth(month, year);
+            date[1]--;
+            date[0] = getNumberOfDaysInMonth(month - 1, year);
         } else {
-            day--;
+            date[0]--;
         }
+        return date;
     };
 }
