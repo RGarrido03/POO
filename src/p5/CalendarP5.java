@@ -3,33 +3,21 @@ package p5;
 import utils.Calendar;
 
 public class CalendarP5 {
-    private int year;
-    private int first_weekday;
-    private int[][] events = new int[12][31];
+    private final int year;
+    private final int first_weekday;
+    private final int[][] events = new int[12][31];
     
     CalendarP5(int year, int first_weekday) {
-        this.setYear(year);
+        this.year = year;
         this.first_weekday = first_weekday;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setFirstWeekdayOfYear(int first_weekday) {
-        if (first_weekday >= 1 || first_weekday <= 7) {
-            this.first_weekday = first_weekday;
-        } else {
-            throw new IllegalArgumentException("Invalid weekday");
-        }
-    }
-
     public int getYear() {
-        return year;
+        return this.year;
     }
 
     public int firstWeekdayOfYear() {
-        return first_weekday;
+        return this.first_weekday;
     }
 
     public int firstWeekdayOfMonth(int month) {
@@ -37,12 +25,14 @@ public class CalendarP5 {
     }
 
     public void addEvent(DateYMD date) {
-        events[date.getMonth()][date.getDay()]++;
+        this.events[date.getMonth() - 1][date.getDay() - 1]++;
     }
 
     public void removeEvent(DateYMD date) {
-        if (events[date.getMonth()][date.getDay()] != 0)
-            events[date.getMonth()][date.getDay()]--;
+        if (this.events[date.getMonth() - 1][date.getDay() - 1] > 0)
+            this.events[date.getMonth() - 1][date.getDay() - 1]--;
+        else
+            throw new IllegalArgumentException("There are no events on this day");
     }
 
     public String toString(int month) {
@@ -50,11 +40,11 @@ public class CalendarP5 {
         date[0] = 1;
         date[1] = month;
         date[2] = this.year;
-        return Calendar.printMonth(date, firstWeekdayOfMonth(month));
+        return Calendar.printMonthWithEvents(date, firstWeekdayOfMonth(month), this.events);
     }
 
     @Override
     public String toString() {
-        return Calendar.printYear(year, first_weekday);
+        return Calendar.printYearWithEvents(this.year, this.first_weekday, this.events);
     }
 }

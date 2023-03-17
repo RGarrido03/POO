@@ -6,24 +6,57 @@ public class Calendar {
         StringBuilder month_printString = new StringBuilder();
         
         // Print header
-        String header = months_names[date[1] - 1] + " " + Integer.toString(date[2]);
+        String header = months_names[date[1] - 1] + " " + date[2];
         StringBuilder centered_header = Strings.centerString(header, 21);
-        month_printString.append(centered_header.toString() + "\n");
+        month_printString.append(centered_header).append("\n");
 
         // Print subheader containing the days of the week
         month_printString.append("Su Mo Tu We Th Fr Sa\n");
         
         // Print inital white space gap until day 1
-        StringBuilder initial_gap = new StringBuilder();
-        for (int i = 0; i < start; i++) {
-            initial_gap.append("   ");
-        }
-        month_printString.append(initial_gap.toString());
+        month_printString.append("   ".repeat(Math.max(0, start)));
         
         // Print calendar
         int day_of_week = start;
         int days_in_month = getNumberOfDaysInMonth(date[1], date[2]);
         for (int day = 1; day <= days_in_month; day++) {
+            if (day_of_week % 7 == 6 || day == days_in_month) {
+                month_printString.append(String.format("%2d\n", day));
+            } else {
+                month_printString.append(String.format("%2d ", day));
+            }
+            day_of_week++;
+        }
+
+        return month_printString.toString();
+    }
+
+    public static String printMonthWithEvents(int[] date, int start, int[][] events) {
+        String[] months_names = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        StringBuilder month_printString = new StringBuilder();
+
+        // Print header
+        String header = months_names[date[1] - 1] + " " + date[2];
+        StringBuilder centered_header = Strings.centerString(header, 27);
+        month_printString.append(centered_header).append("\n");
+
+        // Print subheader containing the days of the week
+        month_printString.append("Sun Mon Tue Wed Thu Fri Sat\n");
+
+        // Print inital white space gap until day 1
+        month_printString.append("    ".repeat(Math.max(0, start)));
+
+        // Print calendar
+        int day_of_week = start;
+        int days_in_month = getNumberOfDaysInMonth(date[1], date[2]);
+
+        for (int day = 1; day <= days_in_month; day++) {
+            if (events[date[1] - 1][day - 1] > 0) {
+                month_printString.append("*");
+            } else {
+                month_printString.append(" ");
+            }
+
             if (day_of_week % 7 == 6 || day == days_in_month) {
                 month_printString.append(String.format("%2d\n", day));
             } else {
@@ -44,6 +77,21 @@ public class Calendar {
         for (int i = 1; i <= 12; i++) {
             date[1] = i;
             calendar.append(Calendar.printMonth(date, firstWeekdayOfMonth(i, year, first_weekday_year)));
+            calendar.append("\n");
+        }
+
+        return calendar.toString();
+    }
+
+    public static String printYearWithEvents(int year, int first_weekday_year, int[][] events) {
+        StringBuilder calendar = new StringBuilder();
+        int[] date = new int[3];
+        date[0] = 1;
+        date[2] = year;
+
+        for (int i = 1; i <= 12; i++) {
+            date[1] = i;
+            calendar.append(Calendar.printMonthWithEvents(date, firstWeekdayOfMonth(i, year, first_weekday_year), events));
             calendar.append("\n");
         }
 
@@ -86,10 +134,7 @@ public class Calendar {
     public static boolean isValidDate(int day, int month, int year) {
         if (!isValidMonth(month)) {
             return false;
-        } else if (day < 1 || day > getNumberOfDaysInMonth(month, year)) {
-            return false;
-        }
-        return true;
+        } else return day >= 1 && day <= getNumberOfDaysInMonth(month, year);
     }
 
     public static int[] incrementDate(int day, int month, int year) {
@@ -105,7 +150,7 @@ public class Calendar {
             date[0]++;
         }
         return date;
-    };
+    }
 
     public static int[] decrementDate(int day, int month, int year) {
         int[] date = {day, month, year};
@@ -120,5 +165,5 @@ public class Calendar {
             date[0]--;
         }
         return date;
-    };
+    }
 }
