@@ -11,6 +11,6 @@ public class PrintCalendarEx {
         int start = UserInput.inputIntRange(sc, "Input the day of the week, in numbers:", 1, 7, false, false);
 
         System.out.print("\n");
-        Calendar.printCalendar(date, start);
+        Calendar.printMonth(date, start);
     }
 }

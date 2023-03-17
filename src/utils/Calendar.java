@@ -1,35 +1,68 @@
 package utils;
 
 public class Calendar {
-    public static void printCalendar(int[] date, int start) {
+    public static String printMonth(int[] date, int start) {
         String[] months_names = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        StringBuilder month_printString = new StringBuilder();
         
         // Print header
-        String header = months_names[date[0] - 1] + " " + Integer.toString(date[1]);
+        String header = months_names[date[1] - 1] + " " + Integer.toString(date[2]);
         StringBuilder centered_header = Strings.centerString(header, 21);
-        System.out.println(centered_header);
+        month_printString.append(centered_header.toString() + "\n");
 
         // Print subheader containing the days of the week
-        System.out.println("Su Mo Tu We Th Fr Sa");
+        month_printString.append("Su Mo Tu We Th Fr Sa\n");
         
         // Print inital white space gap until day 1
         StringBuilder initial_gap = new StringBuilder();
         for (int i = 0; i < start; i++) {
             initial_gap.append("   ");
         }
-        System.out.print(initial_gap);
+        month_printString.append(initial_gap.toString());
         
         // Print calendar
         int day_of_week = start;
-        int days_in_month = getNumberOfDaysInMonth(date[0], date[1]);
+        int days_in_month = getNumberOfDaysInMonth(date[1], date[2]);
         for (int day = 1; day <= days_in_month; day++) {
             if (day_of_week % 7 == 6 || day == days_in_month) {
-                System.out.printf("%2d\n", day);
+                month_printString.append(String.format("%2d\n", day));
             } else {
-                System.out.printf("%2d ", day);
+                month_printString.append(String.format("%2d ", day));
             }
             day_of_week++;
         }
+
+        return month_printString.toString();
+    }
+
+    public static String printYear(int year, int first_weekday_year) {
+        StringBuilder calendar = new StringBuilder();
+        int[] date = new int[3];
+        date[0] = 1;
+        date[2] = year;
+
+        for (int i = 1; i <= 12; i++) {
+            date[1] = i;
+            calendar.append(Calendar.printMonth(date, firstWeekdayOfMonth(i, year, first_weekday_year)));
+            calendar.append("\n");
+        }
+
+        return calendar.toString();
+    }
+
+    public static int firstWeekdayOfMonth(int month, int year, int first_weekday_year) {
+        int[] add = {0, 3, 0, 3, 2, 3, 2, 3, 3, 2, 3, 2};
+        int sum = first_weekday_year;
+
+        if (isLeapYear(year)) {
+            add[2]++;
+        }
+
+        for (int i = 0; i < month; i++) {
+            sum += add[i];
+        }
+
+        return sum % 7;
     }
 
     public static int getNumberOfDaysInMonth(int month, int year) {
