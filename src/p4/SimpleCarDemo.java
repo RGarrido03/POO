@@ -1,13 +1,13 @@
 package p4;
 import java.util.Scanner;
 
-class Car {
+class SimpleCar {
     private String make;
     private String model;
     private int year;
     private int kms;
 
-    public Car(String make, String model, int year, int kms) {
+    public SimpleCar(String make, String model, int year, int kms) {
         this.make = make;
         this.model = model;
         this.year = year;
