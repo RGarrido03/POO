@@ -43,4 +43,15 @@ public class Person {
     public String toString() {
         return this.name + "; CC: " + this.cc + "; Date of birth: " + this.dateOfBirth.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Person p)) {
+            return false;
+        }
+        return this.cc == ((Person) o).getCc();
+    }
 }
