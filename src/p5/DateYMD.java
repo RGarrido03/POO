@@ -6,7 +6,7 @@ public class DateYMD {
     private int month;
     private int day;
 
-    DateYMD(int day, int month, int year) {
+    public DateYMD(int day, int month, int year) {
         this.setDate(day, month, year);
     }
 
@@ -61,7 +61,7 @@ public class DateYMD {
 
     public int monthDays(int month, int year) {
         return Calendar.getNumberOfDaysInMonth(month, year);
-    };
+    }
 
     public void incrementDate() {
         int[] tempDate = Calendar.incrementDate(this.day, this.month, this.year);
