@@ -126,7 +126,7 @@ public class Ex2 {
         //
         // If I remember any data structure that can help on this, I'll change this method or put that on a comment.
         // Either way, my code is always updated at github.com/RGarrido03.
-        // Suggestions are welcome, thanks! :)
+        // Suggestions are welcome :)
 
         int option = UserInput.inputInt(sc, "1. Search by name\n2. Search by phone\n>> ");
         int count = 0;
