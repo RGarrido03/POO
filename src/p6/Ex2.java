@@ -37,6 +37,9 @@ public class Ex2 {
 
             Person person = new Person(name, cc, dateOfBirth);
 
+            // Duplicate person check
+            // Very inneficient method below. Its computational complexity is O(n).
+            // Check method searchContact() for explanations and some brainstorming.
             for (Contact contact : contacts.values()) {
                 if (contact.equals(person)) {
                     String option = UserInput.inputString(sc, "Person already exists. Do you still want to add it? (y/n)");
@@ -117,7 +120,9 @@ public class Ex2 {
     private static int searchContact (Scanner sc) {
         // Very inneficient method below. Its computational complexity is O(n).
         // What is the best way to search for a contact? The HashMap keys are the contacts' IDs, so they're not that useful.
+        //
         // A possible workaround for the number would be ordering the contacts' IDs by phone number, so that binary search could be used.
+        // But what about the name? I could order the contacts' IDs by name, but it wouldn't work for phone numbers (a loop cycle).
         //
         // If I remember any data structure that can help on this, I'll change this method or put that on a comment.
         // Either way, my code is always updated at github.com/RGarrido03.
