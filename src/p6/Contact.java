@@ -1,7 +1,5 @@
 package p6;
 
-import java.util.Objects;
-
 public class Contact {
     private static int idCounter = 1;
     private final int id;
@@ -10,18 +8,24 @@ public class Contact {
     private String email;
 
     public Contact(Person person, int phone, String email) {
-        this.id = idCounter++;
         this.person = person;
 
         try {
             this.setPhone(phone);
         } catch (IllegalArgumentException e) {
-            try {
-                this.setEmail(email);
-            } catch (IllegalArgumentException e2) {
-                throw new IllegalArgumentException("Contact must have at least a phone number or an e-mail");
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            this.setEmail(email);
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().equals("Invalid e-mail. It must have the form \"name@domain\".")) {
+                System.out.println(e.getMessage());
+            } else {
+                throw e;
             }
         }
+        this.id = idCounter++;
     }
 
     public int getPhone() {
@@ -30,12 +34,15 @@ public class Contact {
 
     public boolean willBeEmpty(int phone, String email) {
         // TODO: Check if phone number and e-mail won't be empty after setting null.
-        return phone != 0 || email != null;
+        return phone == -1 && (email == null || email.equals(""));
     }
 
     public void setPhone(int phone) {
         if (phone == 0 || phone == -1) {
-            if (willBeEmpty(phone, this.email)) {
+            // callingMethod is used to check if the method is being called from the constructor.
+            // If it is, the exception won't be thrown, because email isn't set yet.
+            String callingMethod = new Throwable().getStackTrace()[1].getMethodName();
+            if (willBeEmpty(-1, this.email) && !callingMethod.equals("<init>")) {
                 throw new IllegalArgumentException("Contact must have at least a phone number or an e-mail");
             } else {
                 this.phone = -1;
@@ -45,14 +52,7 @@ public class Contact {
             // - The regex checks if the phone number is 9 digits long and starts with the digit 9
             this.phone = phone;
         } else {
-            throw new IllegalArgumentException("Invalid phone number");
-        }
-
-        // Check if phone number is 9 digits long and starts with the digit 9
-        if (Integer.toString(phone).equals("^9[0-9]{8}$")) {
-            this.phone = phone;
-        } else {
-            throw new IllegalArgumentException("Invalid phone number");
+            throw new IllegalArgumentException("Invalid phone number. It must be 9 digits long and start with the digit 9.");
         }
     }
 
@@ -73,7 +73,7 @@ public class Contact {
             // - Object.equals() circunvents the null check
             this.email = email;
         } else {
-            throw new IllegalArgumentException("Invalid e-mail");
+            throw new IllegalArgumentException("Invalid e-mail. It must have the form \"name@domain\".");
         }
     }
 
@@ -92,5 +92,13 @@ public class Contact {
     @Override
     public String toString() {
         return this.id + ": " + this.person.toString() + "; Phone: " + this.phone + "; E-mail: " + this.email;
+    }
+
+    public boolean equals(Contact contact) {
+        return this.person.equals(contact.getPerson());
+    }
+
+    public boolean equals(Person person) {
+        return this.person.equals(person);
     }
 }
