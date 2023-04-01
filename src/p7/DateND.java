@@ -7,11 +7,7 @@ public class DateND extends Date {
         this.setDate(days);
     }
 
-    public DateND(int day, int month, int year) {
-        this.setDate(day, month, year);
-    }
-
-    private int convertYMDtoDays(int day, int month, int year) {
+    private static int convertYMDtoDays(int day, int month, int year) {
         int days = 0;
 
         for (int i = year - 1; i >= 2000; i--) {
@@ -30,14 +26,13 @@ public class DateND extends Date {
         return days;
     }
 
-    // TODO: Fix this
     private static int[] convertDaysToYMD(int days) {
         if (days < 0) throw new IllegalArgumentException("Days must be positive.");
 
         int temp = days;
         int[] ymd = {2000, 1, 1};
 
-        while ((Date.leapYear(ymd[0]) && temp > 366) || temp > 365) {
+        while ((Date.leapYear(ymd[0]) && temp > 366) || (!Date.leapYear(ymd[0]) && temp > 365)) {
             if (Date.leapYear(ymd[0])) {
                 temp -= 366;
             } else {
@@ -89,6 +84,7 @@ public class DateND extends Date {
 
     @Override
     public String toString() {
-        return this.getYear() + "-" + this.getMonth() + "-" + this.getDay();
+        int[] temp = convertDaysToYMD(this.days);
+        return temp[0] + "-" + temp[1] + "-" + temp[2];
     }
 }
