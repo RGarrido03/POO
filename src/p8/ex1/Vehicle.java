@@ -2,7 +2,7 @@ package p8.ex1;
 
 abstract public class Vehicle implements KmPercorridosInterface {
     private final int power;
-    private int kms = 0, lastKms = 0;
+    private int kms, lastKms = 0;
     private final String brand, model, licensePlate;
 
     Vehicle(String licensePlate, String brand, String model, int power, int kms) {
@@ -28,7 +28,7 @@ abstract public class Vehicle implements KmPercorridosInterface {
     public void trip(int quilometros) {
         this.lastKms = quilometros;
         this.kms += this.lastKms;
-    };
+    }
 
     public int getLastTrip() {
         return this.lastKms;
