@@ -1,7 +1,9 @@
 package p8.ex2;
 
+import java.util.Objects;
+
 abstract public class Food {
-    private double proteins, calories, weight;
+    private final double proteins, calories, weight;
 
     Food(double proteins, double calories, double weight) {
         if (proteins < 0) throw new IllegalArgumentException("Proteins must be non-negative.");
@@ -20,5 +22,18 @@ abstract public class Food {
     @Override
     public String toString() {
         return "proteins: " + Math.round(this.proteins * 100) / 100.0 + "g, calories: " + Math.round(this.calories * 100) / 100.0 + "kcal, weight: " + Math.round(this.weight * 100) / 100.0 + "g";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        return Double.compare(food.proteins, proteins) == 0 && Double.compare(food.calories, calories) == 0 && Double.compare(food.weight, weight) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(proteins, calories, weight);
     }
 }
