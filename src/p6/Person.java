@@ -2,12 +2,14 @@ package p6;
 
 import p5.DateYMD;
 
+import java.util.Objects;
+
 public class Person {
     private String name;
     private final int cc;
     private final DateYMD dateOfBirth;
 
-    Person(String name, int cc, DateYMD dateOfBirth) {
+    public Person(String name, int cc, DateYMD dateOfBirth) {
         this.setName(name);
 
         if (cc > 0) {
@@ -53,5 +55,10 @@ public class Person {
             return false;
         }
         return this.cc == ((Person) o).getCc();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cc);
     }
 }
