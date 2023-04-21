@@ -1,9 +1,9 @@
 package p9;
 
 public abstract class Plane {
-    private String id, manufacturer, model;
-    private int year, maxPassengers;
-    private double maxSpeed;
+    private final String id, manufacturer, model;
+    private final int year, maxPassengers;
+    private final double maxSpeed;
 
     Plane(String id, String manufacturer, String model, int year, int maxNumOfPassengers, double maxSpeed) {
         this.id = id;

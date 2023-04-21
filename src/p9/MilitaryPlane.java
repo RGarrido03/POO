@@ -1,7 +1,7 @@
 package p9;
 
 public class MilitaryPlane extends Plane {
-    private int numMissiles;
+    private final int numMissiles;
 
     public MilitaryPlane(String id, String manufacturer, String model, int year, int maxPassengers, double maxSpeed, int numMissiles) {
         super(id, manufacturer, model, year, maxPassengers, maxSpeed);

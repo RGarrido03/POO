@@ -1,6 +1,5 @@
 package p7;
 
-import p6.Person;
 import utils.Calendar;
 
 import java.util.Objects;

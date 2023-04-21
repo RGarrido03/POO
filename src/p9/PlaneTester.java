@@ -10,15 +10,17 @@ public class PlaneTester {
         int choice;
 
         do {
-            System.out.println("\nPlane Fleet Menu:\n" +
-                    "1. Add a plane to the fleet\n" +
-                    "2. Remove a plane from the fleet\n" +
-                    "3. Search for a plane\n" +
-                    "4. Print summary of all planes in the fleet\n" +
-                    "5. Print list of all commercial planes in the fleet\n" +
-                    "6. Print list of all military planes in the fleet\n" +
-                    "7. Print the fastest plane in the fleet\n" +
-                    "0. Exit");
+            System.out.println("""
+
+                Plane Fleet Menu:
+                1. Add a plane to the fleet
+                2. Remove a plane from the fleet
+                3. Search for a plane
+                4. Print summary of all planes in the fleet
+                5. Print list of all commercial planes in the fleet
+                6. Print list of all military planes in the fleet
+                7. Print the fastest plane in the fleet
+                0. Exit""");
 
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
