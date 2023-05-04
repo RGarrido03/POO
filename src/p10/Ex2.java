@@ -6,32 +6,32 @@ import java.util.List;
 
 public class Ex2 {
 
-    private static Book randomizeBook(HashMap<String, List<Book>> hashMap, String key) {
+    private static Book randomizeBook(HashMap<GenderEnum, List<Book>> hashMap, GenderEnum key) {
         List<Book> list = hashMap.get(key);
         return list.get((int) (Math.random() * list.size()));
     }
 
     public static void main(String[] args) {
-        HashMap<String, List<Book>> bookHashMap = new HashMap<>();
+        HashMap<GenderEnum, List<Book>> bookHashMap = new HashMap<>();
 
-        bookHashMap.put("Drama", new ArrayList<>());
-        bookHashMap.put("Fantasy", new ArrayList<>());
-        bookHashMap.put("Science Fiction", new ArrayList<>());
-        bookHashMap.put("Mystery", new ArrayList<>());
-        bookHashMap.put("Horror", new ArrayList<>());
+        bookHashMap.put(GenderEnum.DRAMA, new ArrayList<>());
+        bookHashMap.put(GenderEnum.FANTASY, new ArrayList<>());
+        bookHashMap.put(GenderEnum.SCIENCEFICTION, new ArrayList<>());
+        bookHashMap.put(GenderEnum.MYSTERY, new ArrayList<>());
+        bookHashMap.put(GenderEnum.HORROR, new ArrayList<>());
 
-        bookHashMap.get("Drama").add(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925));
-        bookHashMap.get("Fantasy").add(new Book("The Lord of the Rings", "J. R. R. Tolkien", 1954));
-        bookHashMap.get("Fantasy").add(new Book("The Hobbit", "J. R. R. Tolkien", 1937));
-        bookHashMap.get("Science Fiction").add(new Book("Dune", "Frank Herbert", 1965));
-        bookHashMap.get("Mystery").add(new Book("The Maltese Falcon", "Dashiell Hammett", 1930));
-        bookHashMap.get("Horror").add(new Book("The Shining", "Stephen King", 1977));
+        bookHashMap.get(GenderEnum.DRAMA).add(new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925));
+        bookHashMap.get(GenderEnum.FANTASY).add(new Book("The Lord of the Rings", "J. R. R. Tolkien", 1954));
+        bookHashMap.get(GenderEnum.FANTASY).add(new Book("The Hobbit", "J. R. R. Tolkien", 1937));
+        bookHashMap.get(GenderEnum.SCIENCEFICTION).add(new Book("Dune", "Frank Herbert", 1965));
+        bookHashMap.get(GenderEnum.MYSTERY).add(new Book("The Maltese Falcon", "Dashiell Hammett", 1930));
+        bookHashMap.get(GenderEnum.HORROR).add(new Book("The Shining", "Stephen King", 1977));
 
-        bookHashMap.get("Drama").get(0).setYear(1926);
-        bookHashMap.get("Fantasy").get(0).setTitle("The Hobbit");
-        bookHashMap.get("Science Fiction").get(0).setAuthor("Frank Herbert");
+        bookHashMap.get(GenderEnum.DRAMA).get(0).setYear(1926);
+        bookHashMap.get(GenderEnum.FANTASY).get(0).setTitle("The Hobbit");
+        bookHashMap.get(GenderEnum.SCIENCEFICTION).get(0).setAuthor("Frank Herbert");
 
-        bookHashMap.remove("Mystery");
+        bookHashMap.remove(GenderEnum.MYSTERY);
 
         System.out.println(bookHashMap);
         System.out.println(bookHashMap.keySet());
@@ -41,7 +41,7 @@ public class Ex2 {
             }
         }
 
-        System.out.println(randomizeBook(bookHashMap, "Drama"));
-        System.out.println(randomizeBook(bookHashMap, "Fantasy"));
+        System.out.println(randomizeBook(bookHashMap, GenderEnum.DRAMA));
+        System.out.println(randomizeBook(bookHashMap, GenderEnum.FANTASY));
     }
 }
