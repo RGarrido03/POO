@@ -2,19 +2,17 @@ package p10;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ex4 {
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner input = new Scanner(new FileReader("resources/lyrics.txt"));
-        List<String> twoCharWords = new ArrayList<>();
+        Set<String> twoCharWords = new HashSet<>();
 
         while (input.hasNext()) {
             String word = input.next();
-            if (!twoCharWords.contains(word) && word.length() > 2 && word.matches("\\w*")) {
+            if (word.length() > 2 && word.matches("\\w*")) {
                 twoCharWords.add(word);
             }
         }
