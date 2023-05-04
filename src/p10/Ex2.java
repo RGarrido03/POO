@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Ex2 {
+
     private static Book randomizeBook(HashMap<String, List<Book>> hashMap, String key) {
         List<Book> list = hashMap.get(key);
         return list.get((int) (Math.random() * list.size()));
     }
+
     public static void main(String[] args) {
         HashMap<String, List<Book>> bookHashMap = new HashMap<>();
 

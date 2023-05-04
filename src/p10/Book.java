@@ -3,6 +3,7 @@ package p10;
 import java.util.Objects;
 
 public class Book {
+
     String title, author;
     int year;
 
@@ -33,7 +34,11 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return year == book.year && Objects.equals(title, book.title) && Objects.equals(author, book.author);
+        return (
+            year == book.year &&
+            Objects.equals(title, book.title) &&
+            Objects.equals(author, book.author)
+        );
     }
 
     @Override

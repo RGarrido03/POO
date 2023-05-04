@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Ex3 {
+
     public static void main(String[] args) {
         HashMap<Character, ArrayList<Integer>> letterHashMap = new HashMap<>();
         String str = "Hello World";

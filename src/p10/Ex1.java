@@ -3,6 +3,7 @@ package p10;
 import java.util.HashMap;
 
 public class Ex1 {
+
     public static void main(String[] args) {
         HashMap<String, Book> bookHashMap = new HashMap<>();
 
