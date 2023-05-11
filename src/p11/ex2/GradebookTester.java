@@ -1,9 +1,10 @@
 package p11.ex2;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GradebookTester {
+
     public static void main(String[] args) {
         // Create a new Gradebook instance
         Gradebook gradebook = new Gradebook();
@@ -34,4 +35,3 @@ public class GradebookTester {
         gradebook.printAllStudents();
     }
 }
-

@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class EnergyUsageReport {
+
     Map<Integer, Customer> customerMap = new TreeMap<>();
 
     public void load(String path) throws FileNotFoundException {
@@ -13,16 +14,20 @@ public class EnergyUsageReport {
         input.useDelimiter("[|\\n]");
         int id;
 
-        while(input.hasNext()) {
+        while (input.hasNext()) {
             id = Integer.parseInt(input.next());
 
-            customerMap.put(id,
-                new Customer(id, Arrays.asList(
-                    Double.parseDouble(input.next()),
-                    Double.parseDouble(input.next()),
-                    Double.parseDouble(input.next()),
-                    Double.parseDouble(input.next())
-                ))
+            customerMap.put(
+                id,
+                new Customer(
+                    id,
+                    Arrays.asList(
+                        Double.parseDouble(input.next()),
+                        Double.parseDouble(input.next()),
+                        Double.parseDouble(input.next()),
+                        Double.parseDouble(input.next())
+                    )
+                )
             );
         }
     }
@@ -42,7 +47,7 @@ public class EnergyUsageReport {
     public double calculateTotalUsage(int id) {
         double sum = 0;
 
-        for (double reading: customerMap.get(id).getMeterReadings()) {
+        for (double reading : customerMap.get(id).getMeterReadings()) {
             sum += reading;
         }
 
@@ -53,7 +58,7 @@ public class EnergyUsageReport {
         try (PrintWriter out = new PrintWriter(path)) {
             int id;
 
-            for (Customer customer: customerMap.values()) {
+            for (Customer customer : customerMap.values()) {
                 id = customer.getCustomerId();
                 out.printf("%d|%f", id, calculateTotalUsage(id));
             }

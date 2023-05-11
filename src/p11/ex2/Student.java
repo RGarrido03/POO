@@ -1,14 +1,13 @@
 package p11.ex2;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 public class Student implements Comparable<Student> {
 
     private String name;
-    private List<Double> grades;
+    private final List<Double> grades;
 
     public Student(String name, List<Double> grades) {
         this.name = name;
@@ -42,10 +41,7 @@ public class Student implements Comparable<Student> {
 
     @Override
     public String toString() {
-        return "Student{" +
-            "name='" + name + '\'' +
-            ", grades=" + grades +
-            '}';
+        return "Student{" + "name='" + name + '\'' + ", grades=" + grades + '}';
     }
 
     public boolean equals(String name) {

@@ -17,7 +17,8 @@ public class Gradebook {
             System.out.println(Arrays.toString(line));
             studentMap.put(
                 line[0],
-                new Student(line[0],
+                new Student(
+                    line[0],
                     List.of(
                         Double.parseDouble(line[1]),
                         Double.parseDouble(line[2]),

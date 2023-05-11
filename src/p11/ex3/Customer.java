@@ -3,6 +3,7 @@ package p11.ex3;
 import java.util.List;
 
 public class Customer {
+
     private final int customerId;
     private final List<Double> meterReadings;
 
