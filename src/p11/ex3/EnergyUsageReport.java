@@ -60,7 +60,7 @@ public class EnergyUsageReport {
 
             for (Customer customer : customerMap.values()) {
                 id = customer.getCustomerId();
-                out.printf("%d|%f", id, calculateTotalUsage(id));
+                out.printf("%4d | %.2f\n", id, calculateTotalUsage(id));
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found. Exiting...");
