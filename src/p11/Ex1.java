@@ -8,7 +8,14 @@ public class Ex1 {
     public static void main(String[] args) throws FileNotFoundException {
         Map<String, Map<String, Integer>> wordsMap = new TreeMap<>();
 
-        Scanner input = new Scanner(new FileReader("resources/major.txt"));
+        Scanner input = null;
+        try {
+            input = new Scanner(new FileReader("resources/major.txt"));
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found. Exiting...");
+            System.exit(1);
+        }
+
         input.useDelimiter("[ \\r\\t\\n.,:'‘’;?!\\-*{}=+&/()\\[\\]”“\"]+");
 
         String previous = input.hasNext() ? input.next().toLowerCase() : "";
