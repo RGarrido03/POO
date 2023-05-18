@@ -2,7 +2,6 @@ package p11.ex2;
 
 import java.util.List;
 import java.util.Objects;
-import org.jetbrains.annotations.NotNull;
 
 public class Student implements Comparable<Student> {
 
@@ -27,7 +26,7 @@ public class Student implements Comparable<Student> {
     }
 
     @Override
-    public int compareTo(@NotNull Student student) {
+    public int compareTo(Student student) {
         return this.name.compareToIgnoreCase(student.getName());
     }
 
